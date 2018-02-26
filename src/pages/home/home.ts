@@ -14,7 +14,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: Http) {
 
-  this.posts=this.http.get('http://35.205.81.28/data.php');
+  this.http.get('http://35.205.81.28/data').map(res => res.json()).subscribe(data => {
+        this.posts = data.data;
+    });
 
   console.log(this.posts);
 
