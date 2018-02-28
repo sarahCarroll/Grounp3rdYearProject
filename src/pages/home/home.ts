@@ -8,20 +8,34 @@ import 'rxjs/add/operator/map';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  public myDataArray:any[];
   //empty member variable called posts - to pull in remote server
   posts: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
-
-  this.http.get('http://35.205.81.28/data').map(res => res.json()).subscribe(data => {
-        this.posts = data.data;
-    });
-
-  console.log(this.posts);
-
-  console.log("hello just called get");
-
   }
 
+
+  ionViewWillEnter(){
+   
+
+var parameters={
+  _fn:'getHerdNumbers'
+}
+
+this.http.post('http://35.205.81.28/api/',parameters).subscribe((data)=>{
+  console.log(data);  
+  let myDataArray:any[]=JSON.parse(data['_body']);
+  
+  /*myDataArray.forEach((i)=>{
+    console.log(i.HerdNo);
+
+  });*/
+},
+err=>{console.log(err)});
+
+
+    
+  console.log("hello just called get");
+  }
 }
