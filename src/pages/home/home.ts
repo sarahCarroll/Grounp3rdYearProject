@@ -24,13 +24,9 @@ var parameters={
 }
 
 this.http.post('http://35.205.81.28/api/',parameters).subscribe((data)=>{
-  console.log(data);  
-  let myDataArray:any[]=JSON.parse(data['_body']);
   
-  /*myDataArray.forEach((i)=>{
-    console.log(i.HerdNo);
-
-  });*/
+  console.log(JSON.parse(data['_body']));
+  this.myDataArray = (JSON.parse(data['_body']));
 },
 err=>{console.log(err)});
 
