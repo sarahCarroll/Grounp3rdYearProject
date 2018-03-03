@@ -40,8 +40,8 @@ import { PeopleServiceProvider } from '../providers/people-service/people-servic
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     PeopleServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
