@@ -8,9 +8,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { AddPage } from '../pages/add/add';
+import { DeletePage } from '../pages/delete/delete';
 import { HomePage } from '../pages/home/home';
+import { UpdatePage } from '../pages/update/update';
+
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,9 +22,10 @@ import { PeopleServiceProvider } from '../providers/people-service/people-servic
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    AddPage,
+    DeletePage,
     HomePage,
+    UpdatePage,
     TabsPage
   ],
   imports: [
@@ -34,9 +37,10 @@ import { PeopleServiceProvider } from '../providers/people-service/people-servic
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    AddPage,
+    DeletePage,
     HomePage,
+    UpdatePage,
     TabsPage
   ],
   providers: [
@@ -47,7 +51,4 @@ import { PeopleServiceProvider } from '../providers/people-service/people-servic
   ]
 })
 export class AppModule { }
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
-export class AppModule {}
+    
