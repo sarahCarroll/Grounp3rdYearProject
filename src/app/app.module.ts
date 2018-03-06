@@ -1,3 +1,7 @@
+
+//https://www.joshmorony.com/using-http-to-fetch-remote-data-from-a-server-in-ionic-2/
+//http module needs to be asses in the app.module.ts 
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -38,6 +42,11 @@ import { PeopleServiceProvider } from '../providers/people-service/people-servic
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    PeopleServiceProvider
+  ]
+})
+export class AppModule { }
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
