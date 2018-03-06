@@ -7,9 +7,17 @@ import { NavController } from 'ionic-angular';
 })
 export class AddPage {
 
-  constructor(public navCtrl: NavController) {
-
+  add = {}
+  logForm() {
+    console.log(this.add)
   }
 
+  constructor(public navCtrl: NavController) {
+
+    
+  
+  }
+
+  
 
 }
