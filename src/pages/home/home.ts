@@ -12,10 +12,8 @@ export class HomePage {
   public myDataArray: any[];
 
 
-
   constructor(public navCtrl: NavController, public http: Http) {
   }
-
 
   ionViewWillEnter() {
 
