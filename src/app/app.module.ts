@@ -12,7 +12,6 @@ import { AddPage } from '../pages/add/add';
 import { DeletePage } from '../pages/delete/delete';
 import { HomePage } from '../pages/home/home';
 import { UpdatePage } from '../pages/update/update';
-
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
