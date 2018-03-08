@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import {AddPage} from '../add/add';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,10 +16,8 @@ export class HomePage {
   public count: any[];
 
 
-
   constructor(public navCtrl: NavController, public http: Http) {
   }
-
 
   ionViewWillEnter() {
 
