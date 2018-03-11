@@ -7,24 +7,18 @@
 <ion-content padding>
   <!--UseName = herd number of logged in farmer-->
   <h2 align="center">User: username(herdNo)</h2>
-  <h2 align="center"> Welcome First Name sarah</h2>
+  <h2 align="center"> Welcome (First Name) sarah</h2>
   <!--select count * from herd where username = **** where animal is current(not dead/sold)
         Make a hyper link of the count value if > 0 this will return list of all animals-->
 
-  <ion-item *ngFor="let myData of myDataArray">
-    <h2>Number of current animals in herd ={{myData.length}}
+  <!--<ion-item *ngFor="let myCount of myCountArray">
+    <h2>Number of current animals in herd ={{myCount.herdNo}}
     </h2>
-  </ion-item>
-
-
+  </ion-item>-->
 
   <ion-item *ngFor="let myData of myDataArray">
     <h2>{{myData.HerdNo}}
-      <input type="checkbox">
     </h2>
   </ion-item>
-  
 
 </ion-content>
-
-   
