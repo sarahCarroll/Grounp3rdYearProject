@@ -9,14 +9,17 @@
     <h2 align="center">User: username(herdNo)</h2>
     <h2 align="center"> Welcome (First Name) sarah</h2>
   
-    <ion-item *ngFor="let myCount of myCountArray">
-      <h2>{{myCount.HerdNo}}
-      </h2>
-    </ion-item>
+ 
+
   
     <ion-item *ngFor="let myData of myDataArray">
       <h2>{{myData.herdNo}}
       </h2>
     </ion-item>
+
+    <ion-item *ngFor="let myCount of myCountArray">
+        <h2>Number of animals recorded = {{myCount}}
+        </h2>
+      </ion-item>
   
   </ion-content>

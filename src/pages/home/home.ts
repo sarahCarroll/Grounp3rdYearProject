@@ -38,12 +38,13 @@ export class HomePage {
     },
       err => { console.log(err) });
 
+     
+
     this.http.post('http://35.205.81.28/api/', changes).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
-      //this.myCountArray = ((data['_body']));
+      this.myCountArray = Array.of(JSON.parse(data['_body']));
     },
-
 
 
       err => { console.log(err) });
