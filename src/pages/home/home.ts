@@ -50,4 +50,15 @@ export class HomePage {
       err => { console.log(err) });
     console.log("hello just called get");
   }
+
+
+
+
+  // Allow navigation to the AddTechnology page for amending an existing entry
+  // (We supply the actual record to be amended, as this method's parameter,
+  // to the AddTechnology page
+ /* viewEntry(param)
+  {
+     this.navCtrl.push('AddPage', param);
+}*/
 }
