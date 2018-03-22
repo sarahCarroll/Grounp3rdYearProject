@@ -19,6 +19,12 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: Http) {
   }
 
+  myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+    console.log("test");
+  }
+
   ionViewWillEnter() {
 
 
@@ -41,7 +47,7 @@ export class HomePage {
     this.http.post('http://35.205.81.28/api/', changes).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
-      //this.myCountArray = ((data['_body']));
+      this.myCountArray = Array.of(JSON.parse(data['_body']));
     },
 
 

@@ -10,13 +10,21 @@
   <h2 align="center"> Welcome (First Name) sarah</h2>
 
   <ion-item *ngFor="let myCount of myCountArray">
-    <h2>{{myCount.HerdNo}}
+    <h2 align="center">Number of animals recorded: {{myCount}}
     </h2>
   </ion-item>
 
+  <!--<ng-container *ngFor="let myData of myDataArray">
+    <tag *ngIf="component.type === 'tag'" [tag]="component.content"></tag>
+    <ng-container *ngIf="component.type === 'text'">{{myData.herdNo}}</ng-container>
+  </ng-container>-->
+
   <ion-item *ngFor="let myData of myDataArray">
-    <h2>{{myData.herdNo}}
+    <h2 class="popup" (click)='myFunction();'>{{myData.herdNo}}
+      <span class="popuptext" id="myPopup"></span>
     </h2>
   </ion-item>
+
+
 
 </ion-content>
