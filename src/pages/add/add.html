@@ -17,22 +17,22 @@
     </ion-item>
     <ion-item>
       <ion-label>Animal No</ion-label>
-      <ion-textarea [(ngModel)]="add.number" name="animalNo"></ion-textarea>
+      <ion-textarea [(ngModel)]="number" name="animalNo"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="add.gender" [ngModelOptions]="{standalone: true}">
+      <ion-select [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
         <ion-option value="f">Female</ion-option>
         <ion-option value="m">Male</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Breed</ion-label>
-      <ion-textarea [(ngModel)]="add.breed" name="breed" [ngModelOptions]="{standalone: true}"></ion-textarea>
+      <ion-textarea [(ngModel)]="breed" name="breed" [ngModelOptions]="{standalone: true}"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>DOB</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="add.dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
     </ion-item>
 
     <button ion-button type="add" block (click)="insertData()">Add</button>

@@ -18,10 +18,10 @@ export class AddPage {
   }
 
 
-  herdNo: string;
+  number: string;
   gender: string;
   breed: string;
-  dob: string;
+  dob: Date;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
@@ -30,20 +30,20 @@ export class AddPage {
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-    let postParams = 'herdNo=' + this.herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+    let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+
+    console.log(postParams);
 
     var add = {
       _fn: 'addAnimal'
     }
 
+    console.log(JSON.stringify(postParams));
 
-    this.http.post('http://35.205.81.28/api/', add).subscribe((data) => {
+    this.http.post('http://35.205.81.28/api/', add, JSON.stringify(postParams)).subscribe((data) => {
       console.log(data['_body']);
     }, error => {
       console.log(error);// Error 
     });
   }
-
-
-
 }
