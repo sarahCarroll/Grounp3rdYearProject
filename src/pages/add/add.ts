@@ -35,13 +35,18 @@ export class AddPage {
     console.log(postParams);
 
     var add = {
-      _fn: 'addAnimal'
+      _fn: 'addAnimal',
+      herdNo: this.number,
+      gender: this.gender,
+      dob: this.dob,
+      breed: this.breed
+
     }
 
     console.log(JSON.stringify(postParams));
 
-    this.http.post('http://35.205.81.28/api/', add, JSON.stringify(postParams)).subscribe((data) => {
-      console.log(data['_body']);
+    this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
+      console.log(data['_body'])
     }, error => {
       console.log(error);// Error 
     });
