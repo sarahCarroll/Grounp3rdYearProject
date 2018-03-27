@@ -12,36 +12,43 @@ import 'rxjs/add/operator/map';
   templateUrl: 'add.html'
 })
 export class AddPage {
- 
   add = {}
   logForm() {
-    
+
   }
 
 
-  herdNo: string;
+  number: string;
   gender: string;
   breed: string;
-  dob: string;
+  dob: Date;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
   insertData() {
     var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded' );
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-    let postParams ='herdNo='+ this.herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+    let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+
+    console.log(postParams);
 
     var add = {
-      _fn: 'addAnimal'
+      _fn: 'addAnimal',
+      herdNo: this.number,
+      gender: this.gender,
+      dob: this.dob,
+      breed: this.breed
+
     }
 
+    console.log(JSON.stringify(postParams));
 
-    this.http.post('http://35.205.81.28/api/', add).subscribe((data) => {
-        console.log(data['_body']);
-      }, error => {
-        console.log(error);// Error 
-      });
+    this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
+      console.log(data['_body'])
+    }, error => {
+      console.log(error);// Error 
+    });
   }
 }

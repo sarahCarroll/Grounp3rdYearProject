@@ -6,10 +6,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header></ion-list-header>
-    <ion-item>
-     
-    </ion-item>
-  </ion-list>
+
+    <form >
+        Select an Animal to delete:
+        <br>
+        
+    <ion-item *ngFor="let myData of myDataArray"  >
+        <h2>{{myData.herdNo}}     
+           <input type="checkbox" name="number">
+        </h2>
+      </ion-item>
+
+      <ion-item>
+            <button
+              ion-button
+              item-right
+              text-center
+              block
+              (click)="deleteData()">Remove this Animal</button>
+      </ion-item>
+  
+    </form>
 </ion-content>

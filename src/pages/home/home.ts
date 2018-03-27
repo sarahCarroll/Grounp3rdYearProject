@@ -19,6 +19,12 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: Http) {
   }
 
+  myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+    console.log("test");
+  }
+
   ionViewWillEnter() {
 
 
@@ -31,34 +37,22 @@ export class HomePage {
     }
 
 
-    this.http.post('http://35.205.81.28/api/', parameters).subscribe((data) => {
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
       this.myDataArray = (JSON.parse(data['_body']));
     },
       err => { console.log(err) });
 
-     
-
-    this.http.post('http://35.205.81.28/api/', changes).subscribe((data) => {
+    this.http.post('http://104.199.57.94/api/', changes).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
       this.myCountArray = Array.of(JSON.parse(data['_body']));
     },
 
 
+
       err => { console.log(err) });
     console.log("hello just called get");
   }
-
-
-
-
-  // Allow navigation to the AddTechnology page for amending an existing entry
-  // (We supply the actual record to be amended, as this method's parameter,
-  // to the AddTechnology page
- /* viewEntry(param)
-  {
-     this.navCtrl.push('AddPage', param);
-}*/
 }
