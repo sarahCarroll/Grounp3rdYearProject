@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { HomePage } from "../home/home";
@@ -16,8 +16,8 @@ export class DeletePage {
 
   public myDataArray: any[];
 
-  number: string;
-  constructor(public navCtrl: NavController, public http: Http) {
+  myData: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
   }
 
@@ -38,22 +38,18 @@ export class DeletePage {
   }
 
   deleteData(){
-    /*
-    
-    let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+  
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
+
+          let postParams = '&herdNo=' + this.myData;
 
     console.log(postParams);
 
-  
-  */ 
-          var headers = new Headers();
-          headers.append('Content-Type', 'application/x-www-form-urlencoded');
-          let options = new RequestOptions({ headers: headers });
-      
     var add = {
       _fn: 'deleteAnimal',
-      herdNo: this.number
-
+      herdNo: this.myData,
     }
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {

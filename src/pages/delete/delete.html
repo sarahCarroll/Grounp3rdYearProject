@@ -7,14 +7,19 @@
 
 <ion-content>
 
-    <form >
+    <form (ngSubmit)="logForm()">
         Select an Animal to delete:
         <br>
+
+
         
     <ion-item *ngFor="let myData of myDataArray"  >
-        <h2>{{myData.herdNo}}     
-           <input type="checkbox" name="number">
-        </h2>
+        <ion-select [(ngModel)]="number" multiple="true" [ngModelOptions]="{standalone: true}">
+            <ion-option>{{myData.herdNo}}     
+          <!-- <input type="checkbox" value="submit" name="number">
+          -->
+            </ion-option>
+      </ion-select>
       </ion-item>
 
       <ion-item>
