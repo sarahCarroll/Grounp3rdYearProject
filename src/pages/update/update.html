@@ -15,4 +15,32 @@
 
 <ion-content padding>
 
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+          <ion-label>Add Info</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Animal No</ion-label>
+         <!-- <ion-input type="text" [(ngModel)]="number" name="animalNo">#number</ion-input> -->
+          <ion-input placeholder="number" autofocus="" [(ngModel)]="number" [ngModelOptions]="{standalone: true}" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gender</ion-label>
+          <ion-select [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+            <ion-option value="female">Female</ion-option>
+            <ion-option value="male">Male</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Breed</ion-label>
+          <ion-textarea [(ngModel)]="breed" name="breed" [ngModelOptions]="{standalone: true}"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>DOB</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
+        </ion-item>
+    
+        <button ion-button type="add" block (click)="updateData()">Add</button>
+      </form>
+   
 </ion-content>

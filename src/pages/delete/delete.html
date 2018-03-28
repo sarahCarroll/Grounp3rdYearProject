@@ -11,15 +11,14 @@
         Select an Animal to delete:
         <br>
 
-
+    
         
-    <ion-item *ngFor="let myData of myDataArray"  >
-        <ion-select [(ngModel)]="number" multiple="true" [ngModelOptions]="{standalone: true}">
-            <ion-option>{{myData.herdNo}}     
-          <!-- <input type="checkbox" value="submit" name="number">
-          -->
-            </ion-option>
-      </ion-select>
+  
+        <ion-item  *ngFor="let myData of myDataArray"  >
+            {{myData.herdNo}}     
+         <input type="checkbox" [(ngModel)]="number" [ngModelOptions]="{standalone: true}">
+         
+            
       </ion-item>
 
       <ion-item>

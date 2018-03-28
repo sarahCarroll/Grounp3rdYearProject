@@ -16,7 +16,7 @@ export class DeletePage {
 
   public myDataArray: any[];
 
-  myData: string;
+  number: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
   }
@@ -32,7 +32,7 @@ export class DeletePage {
     this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
-      this.myDataArray = (JSON.parse(data['_body']));
+      this.myDataArray = Array.of(JSON.parse(data['_body']));
     },
       err => { console.log(err) });
   }
@@ -43,13 +43,13 @@ export class DeletePage {
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-          let postParams = '&herdNo=' + this.myData;
+          let postParams = '&herdNo=' + this.number;
 
     console.log(postParams);
 
     var add = {
       _fn: 'deleteAnimal',
-      herdNo: this.myData,
+      herdNo: this.number
     }
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
