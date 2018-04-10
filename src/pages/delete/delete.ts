@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { AlertController } from 'ionic-angular';
 
 import { HomePage } from "../home/home";
 
@@ -17,7 +18,7 @@ export class DeletePage {
   public myDataArray: any[];
 
   number: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
 
   }
 
@@ -39,7 +40,14 @@ export class DeletePage {
   }
 
   deleteData(){
-  
+
+    let alert = this.alertCtrl.create({
+      title: 'Deleted',
+      subTitle: 'Your animal has been deleted!',
+      buttons: ['OK']
+    });
+    alert.present();
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });

@@ -38,6 +38,13 @@ export class UpdatePage {
 
   updateData() { 
 
+    let alert = this.alertCtrl.create({
+      title: 'Update',
+      subTitle: 'Your animal has been updated',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
