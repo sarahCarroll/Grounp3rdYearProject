@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from "../home/home";
+import { AlertController } from 'ionic-angular';
 
 
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -30,15 +31,20 @@ export class UpdatePage {
   gender: string;
   breed: string;
   dob: Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
+/*
+*/
 
-  updateData() {
+  updateData() { 
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
     let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+
+    
 
     console.log(postParams);
 
@@ -50,6 +56,7 @@ export class UpdatePage {
       breed: this.breed
 
     }
+    
 
     console.log(JSON.stringify(postParams));
 
