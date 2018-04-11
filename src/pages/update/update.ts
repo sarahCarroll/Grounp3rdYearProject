@@ -26,17 +26,36 @@ export class UpdatePage {
 
   }
 
-
+  public myDataArray: any[];
+  
   number: string;
   gender: string;
   breed: string;
   dob: Date;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
-/*
-*/
 
-  updateData() { 
+  ionViewWillEnter() {
+
+
+    var parameters = {
+      _fn: 'getHerdNumbers'
+    }
+
+
+  this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
+
+      console.log(JSON.parse(data['_body']));
+      this.myDataArray = (JSON.parse(data['_body']));
+      this.myDataArray.forEach(data=>{
+        data.checked=false;
+      });
+    },
+      err => { console.log(err) });
+
+  }
+
+  updateData(herdNo:string) { 
 
     let alert = this.alertCtrl.create({
       title: 'Update',
@@ -49,15 +68,13 @@ export class UpdatePage {
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-    let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
-
-    
+    let postParams = '&herdNo=' + herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
 
     console.log(postParams);
 
     var add = {
       _fn: 'updateAnimal',
-      herdNo: this.number,
+      herdNo: herdNo,
       gender: this.gender,
       dob: this.dob,
       breed: this.breed

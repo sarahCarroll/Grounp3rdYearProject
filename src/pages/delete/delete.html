@@ -14,13 +14,13 @@
         <ion-item *ngFor="let myData of myDataArray" >
             <ion-label>{{myData.herdNo}} </ion-label> 
             
-            <ion-checkbox  [(ngModel)]="this.number" [ngModelOptions]="{standalone: true}" color="danger"></ion-checkbox>
+            <ion-checkbox  [(ngModel)]="myData.checked" [ngModelOptions]="{standalone: true}" color="danger"></ion-checkbox>
             <button   
             ion-button
             item-right
             icon-only
             outline
-            (click)="deleteData()"><ion-icon class="pull-right" name="trash">
+            (click)="deleteData(myData.herdNo)"><ion-icon class="pull-right" name="trash">
                 </ion-icon>
             </button>
              <!--   <h2>{{myData.herdNo}}

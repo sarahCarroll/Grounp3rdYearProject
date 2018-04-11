@@ -34,12 +34,15 @@ export class DeletePage {
 
       console.log(JSON.parse(data['_body']));
       this.myDataArray = (JSON.parse(data['_body']));
+      this.myDataArray.forEach(data=>{
+        data.checked=false;
+      });
     },
       err => { console.log(err) });
 
   }
 
-  deleteData(){
+  deleteData(herdNo:string){
 
     let alert = this.alertCtrl.create({
       title: 'Deleted',
@@ -52,13 +55,9 @@ export class DeletePage {
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-          let postParams = '&herdNo=' + this.number;
-
-    console.log(postParams);
-
     var add = {
       _fn: 'deleteAnimal',
-      herdNo: this.number
+      herdNo: herdNo
     }
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
@@ -69,48 +68,3 @@ export class DeletePage {
   }
 
 }
-
-/*
-
- 
-      this.http.post(url, body, options)
-      .subscribe(data =>
-      {
-         // If the request was successful notify the user
-         if(data.status === 200)
-         {
-            this.hideForm     = true;
-            this.sendNotification(`Congratulations the technology: ${name} was successfully deleted`);
-         }
-         // Otherwise let 'em know anyway
-         else
-         {
-            this.sendNotification('Something went wrong!');
-         }
-      });
-}
-
-deleteAnimal(){
-    let index = this.data.deleteAnimal(herdNo);
-
-    if(index > -1){
-      this.posts.splice(index, 1);
-    }
-}
-
- Delete(id:any)
-  {
-      this.presentLoading();
-      this.data.DeleteMember(id).subscribe(
-          data => {
-              this.members = data;
-              console.log(data);
-              this.loader.dismiss();
-          },
-          err => {
-              console.log(err);
-          },
-          () => console.log('Movie Search Complete')
-      );
-}
-*/ 
