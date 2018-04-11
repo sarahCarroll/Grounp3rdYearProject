@@ -42,12 +42,19 @@ export class DeletePage {
 
   }
 
+  /*
+  Function for deleting animal from our database. 
+  */
   deleteData(herdNo:string){
 
     let alert = this.alertCtrl.create({
       title: 'Deleted',
       subTitle: 'Your animal has been deleted!',
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+        }]
     });
     alert.present();
 

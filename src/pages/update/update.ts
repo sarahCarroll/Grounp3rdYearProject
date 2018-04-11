@@ -64,7 +64,11 @@ export class UpdatePage {
     let alert = this.alertCtrl.create({
       title: 'Update',
       subTitle: 'Your animal has been updated',
-      buttons: ['Dismiss']
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+        }]
     });
     alert.present();
 

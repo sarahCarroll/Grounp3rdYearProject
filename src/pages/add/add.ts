@@ -32,9 +32,14 @@ export class AddPage {
     let alert = this.alertCtrl.create({
       title: 'Added',
       subTitle: 'Your animal has been added!',
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+        }]
     });
     alert.present();
+
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -50,7 +55,6 @@ export class AddPage {
       gender: this.gender,
       dob: this.dob,
       breed: this.breed
-
     }
 
     console.log(JSON.stringify(postParams));
@@ -60,5 +64,6 @@ export class AddPage {
     }, error => {
       console.log(error);// Error 
     });
+
   }
 }
