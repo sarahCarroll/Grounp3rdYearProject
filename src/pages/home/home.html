@@ -7,10 +7,29 @@
   <ion-content padding>
     <!--UseName = herd number of logged in farmer-->
   
-    <ion-item *ngFor="let myData of myDataArray">
-      <h2>{{myData.herdNo}}
-      </h2>
-    </ion-item>
+
+    <form (ngSubmit)="logForm()" >
+     
+      <br>
+
+      <ion-item *ngFor="let myData of myDataArray" >
+          <ion-label>{{myData.herdNo}} </ion-label> 
+          
+          <ion-checkbox  [(ngModel)]="myData.checked" [ngModelOptions]="{standalone: true}" color="danger"></ion-checkbox>
+          <button   
+          ion-button
+          item-right
+          icon-only
+          outline
+          (click)="showData(myData.herdNo)"><ion-icon class="pull-right" name="list-box">
+              </ion-icon>
+          </button>
+           
+              
+     </ion-item>
+
+  </form>
+    
 
     <ion-item *ngFor="let myCount of myCountArray">
         <h2>Number of animals recorded = {{myCount}}

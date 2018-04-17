@@ -48,7 +48,7 @@ export class DeletePage {
   deleteData(herdNo:string){
 
     let alert = this.alertCtrl.create({
-      title: 'Deleted',
+      title: 'View animal details',
       subTitle: 'Your animal has been deleted!',
       buttons: [
         {
