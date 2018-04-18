@@ -16,6 +16,7 @@ export class HomePage {
   public myDataArray: any[];
   public myCountArray: any[];
 
+  //Form for view details
   add = {}
   logForm() {
 
@@ -25,12 +26,11 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
-  myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-    console.log("test");
-  }
-
+  /*
+  Get herd details from php files
+  Calling function getHerdNumbers locally as parameters
+   Calling function getNumberOfAnimals locally as changes
+  */
   ionViewWillEnter() {
 
 
@@ -65,14 +65,16 @@ export class HomePage {
     console.log("hello just called get");
   }
 
+  /*
+  Function to show data about the particular animal number you click
+  */
   showData(herdNo:string){
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-    console.log(herdNo);
-
+  //Calling getHerdInfo locally as add from php
     var add = {
       _fn: 'getHerdInfo',
       herdNo: herdNo
@@ -81,6 +83,7 @@ export class HomePage {
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
       console.log(data['_body'])
 
+      //Alert box for view shows information in getHerdInfo about the animals in database
       let alert = this.alertCtrl.create({
         title: 'View animal',
         subTitle: data['_body'],               
