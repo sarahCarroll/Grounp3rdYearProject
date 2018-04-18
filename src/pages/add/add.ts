@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from "../home/home";
 
+import { AlertController } from 'ionic-angular';
+
 
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -22,10 +24,23 @@ export class AddPage {
   gender: string;
   breed: string;
   dob: Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
   insertData() {
+
+    let alert = this.alertCtrl.create({
+      title: 'Added',
+      subTitle: 'Your animal ' + this.number + ' has been added!',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
+        }]
+    });
+    alert.present();
+
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
@@ -40,7 +55,6 @@ export class AddPage {
       gender: this.gender,
       dob: this.dob,
       breed: this.breed
-
     }
 
     console.log(JSON.stringify(postParams));
@@ -50,5 +64,6 @@ export class AddPage {
     }, error => {
       console.log(error);// Error 
     });
+
   }
 }

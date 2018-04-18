@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { NavController, NavParams, } from 'ionic-angular';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { AddPage } from '../add/add';
@@ -15,8 +16,13 @@ export class HomePage {
   public myDataArray: any[];
   public myCountArray: any[];
 
+  add = {}
+  logForm() {
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
   myFunction() {
@@ -39,8 +45,11 @@ export class HomePage {
 
     this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
-      console.log(JSON.parse(data['_body']));
+      console.log(data['_body']);
       this.myDataArray = (JSON.parse(data['_body']));
+      this.myDataArray.forEach(data=>{
+        data.checked=false;
+      });
     },
       err => { console.log(err) });
 
@@ -54,5 +63,42 @@ export class HomePage {
 
       err => { console.log(err) });
     console.log("hello just called get");
+  }
+
+  showData(herdNo:string){
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
+
+    console.log(herdNo);
+
+    var add = {
+      _fn: 'getHerdInfo',
+      herdNo: herdNo
+    }
+
+    this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
+      console.log(data['_body'])
+
+      let alert = this.alertCtrl.create({
+        title: 'View animal',
+        subTitle: data['_body'],               
+        buttons: [
+          {
+            text: 'OK',
+            handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+          }]
+      });
+      alert.present();
+
+
+    }, error => {
+      console.log(error);// Error 
+    });
+  
+
+   
+
   }
 }

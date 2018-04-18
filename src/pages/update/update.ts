@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from "../home/home";
+import { AlertController } from 'ionic-angular';
 
 
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -25,31 +26,69 @@ export class UpdatePage {
 
   }
 
+  public myDataArray: any[];
 
   number: string;
   gender: string;
   breed: string;
   dob: Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+
+  public herdNo: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
+  ionViewWillEnter() {
+
+
+    var parameters = {
+      _fn: 'getHerdNumbers'
+    }
+
+
+
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
+
+      console.log(JSON.parse(data['_body']));
+      this.myDataArray = (JSON.parse(data['_body']));
+
+    },
+      err => { console.log(err) });
+
+  }
+  /*herdNoSelected(herdNo:string) {
+    this.herdNo=herdNo;
+  }*/
+
   updateData() {
+
+    let alert = this.alertCtrl.create({
+      title: 'Update',
+      subTitle: 'Your animal ' + this.herdNo + ' has been updated',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
+        }]
+    });
+    alert.present();
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     let options = new RequestOptions({ headers: headers });
 
-    let postParams = '&herdNo=' + this.number + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+    let postParams = '&herdNo=' + this.herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
 
     console.log(postParams);
 
     var add = {
       _fn: 'updateAnimal',
-      herdNo: this.number,
+      herdNo: this.herdNo,
       gender: this.gender,
       dob: this.dob,
       breed: this.breed
 
     }
+
 
     console.log(JSON.stringify(postParams));
 

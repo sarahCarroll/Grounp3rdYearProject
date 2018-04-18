@@ -18,10 +18,12 @@
     <ion-item>
       <ion-label>Add Info</ion-label>
     </ion-item>
+
     <ion-item>
-      <ion-label>Animal No</ion-label>
-      <!-- <ion-input type="text" [(ngModel)]="number" name="animalNo">#number</ion-input> -->
-      <ion-input placeholder="number" autofocus="" [(ngModel)]="number" [ngModelOptions]="{standalone: true}"></ion-input>
+      <ion-label>Animal Number</ion-label>
+      <ion-select [(ngModel)]="herdNo" name="herdNo" [ngModelOptions]="{standalone: true}">
+        <ion-option *ngFor="let myData of myDataArray" value="{{myData.herdNo}}">{{myData.herdNo}}</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Gender</ion-label>
@@ -39,7 +41,7 @@
       <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
     </ion-item>
 
-    <button ion-button type="add" block (click)="updateData()">Add</button>
+    <button ion-button type="add" block (click)="updateData()">Update</button>
   </form>
 
 </ion-content>

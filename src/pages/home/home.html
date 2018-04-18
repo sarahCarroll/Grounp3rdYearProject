@@ -1,30 +1,38 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title align="center">Farm Hand</ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <ion-title align="center">Farm Hand</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <!--UseName = herd number of logged in farmer-->
+  
 
-<ion-content padding>
-  <!--UseName = herd number of logged in farmer-->
-  <h2 align="center">User: username(herdNo)</h2>
-  <h2 align="center"> Welcome (First Name) sarah</h2>
+    <form (ngSubmit)="logForm()" >
+     
+      <br>
 
-  <ion-item *ngFor="let myCount of myCountArray">
-    <h2 align="center">Number of animals recorded: {{myCount}}
-    </h2>
-  </ion-item>
+      <ion-item *ngFor="let myData of myDataArray" >
+          <ion-label>{{myData.herdNo}} </ion-label> 
+          
+           <button   
+          ion-button
+          item-right
+          icon-only
+          outline
+          (click)="showData(myData.herdNo)"><ion-icon class="pull-right" name="list-box">
+              </ion-icon>
+          </button>
+           
+              
+     </ion-item>
 
-  <!--<ng-container *ngFor="let myData of myDataArray">
-    <tag *ngIf="component.type === 'tag'" [tag]="component.content"></tag>
-    <ng-container *ngIf="component.type === 'text'">{{myData.herdNo}}</ng-container>
-  </ng-container>-->
+  </form>
+    
 
-  <ion-item *ngFor="let myData of myDataArray">
-    <h2 class="popup" (click)='myFunction();'>{{myData.herdNo}}
-      <span class="popuptext" id="myPopup"></span>
-    </h2>
-  </ion-item>
-
-
-
-</ion-content>
+    <ion-item *ngFor="let myCount of myCountArray">
+        <h2>Number of animals recorded = {{myCount}}
+        </h2>
+      </ion-item>
+  
+  </ion-content>
