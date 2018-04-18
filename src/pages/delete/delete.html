@@ -14,8 +14,7 @@
         <ion-item *ngFor="let myData of myDataArray" >
             <ion-label>{{myData.herdNo}} </ion-label> 
             
-            <ion-checkbox  [(ngModel)]="myData.checked" [ngModelOptions]="{standalone: true}" color="danger"></ion-checkbox>
-            <button   
+             <button   
             ion-button
             item-right
             icon-only
