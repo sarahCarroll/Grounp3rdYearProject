@@ -27,13 +27,12 @@ export class UpdatePage {
   }
 
   public myDataArray: any[];
-  
-  number: string;
+
   gender: string;
   breed: string;
   dob: Date;
 
-  public herdNo:string;
+  public herdNo: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
@@ -44,13 +43,13 @@ export class UpdatePage {
       _fn: 'getHerdNumbers'
     }
 
-   
 
-  this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
+
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
       this.myDataArray = (JSON.parse(data['_body']));
-      
+
     },
       err => { console.log(err) });
 
@@ -59,28 +58,26 @@ export class UpdatePage {
     this.herdNo=herdNo;
   }*/
 
-  updateData() { 
+  updateData() {
 
     let alert = this.alertCtrl.create({
       title: 'Update',
-      subTitle: 'Your animal has been updated',
+      subTitle: 'Your animal ' + this.herdNo + ' has been updated',
       buttons: [
         {
           text: 'OK',
-          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
         }]
     });
     alert.present();
 
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    let options = new RequestOptions({ headers: headers });
-
+    //Debug
     let postParams = '&herdNo=' + this.herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
 
     console.log(postParams);
 
-    var add = {
+    //herdNo, gender. dob, breed declared to be sent through to PHP
+    var update = {
       _fn: 'updateAnimal',
       herdNo: this.herdNo,
       gender: this.gender,
@@ -88,11 +85,11 @@ export class UpdatePage {
       breed: this.breed
 
     }
-    
+
 
     console.log(JSON.stringify(postParams));
 
-    this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
+    this.http.post('http://104.199.57.94/api/', update).subscribe((data) => {
       console.log(data['_body'])
     }, error => {
       console.log(error);// Error 

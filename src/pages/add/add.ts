@@ -31,11 +31,11 @@ export class AddPage {
 
     let alert = this.alertCtrl.create({
       title: 'Added',
-      subTitle: 'Your animal has been added!',
+      subTitle: 'Your animal ' + this.number + ' has been added!',
       buttons: [
         {
           text: 'OK',
-          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
         }]
     });
     alert.present();

@@ -1,13 +1,12 @@
 <!--
   Generated template for the UpdatePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
   <ion-navbar>
-      <ion-title align="center">Farm Hand - Update</ion-title>
+    <ion-title align="center">Farm Hand - Update</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,34 +14,34 @@
 
 <ion-content padding>
 
-    <form (ngSubmit)="logForm()">
-        <ion-item>
-          <ion-label>Add Info</ion-label>
-        </ion-item>
-       
-        <ion-item  >
-            <ion-label>Animal Number</ion-label>
-            <ion-select [(ngModel)]="herdNo" name="herdNo" [ngModelOptions]="{standalone: true}" >
-              <ion-option *ngFor="let myData of myDataArray" value="{{myData.herdNo}}">{{myData.herdNo}}</ion-option>
-              </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>Gender</ion-label>
-          <ion-select [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
-            <ion-option value="female">Female</ion-option>
-            <ion-option value="male">Male</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>Breed</ion-label>
-          <ion-textarea [(ngModel)]="breed" name="breed" [ngModelOptions]="{standalone: true}"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label>DOB</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
-        </ion-item>
-    
-        <button ion-button type="add" block (click)="updateData()">Update</button>
-      </form>
-   
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Add Info</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Animal Number</ion-label>
+      <ion-select [(ngModel)]="herdNo" name="herdNo" [ngModelOptions]="{standalone: true}">
+        <ion-option *ngFor="let myData of myDataArray" value="{{myData.herdNo}}">{{myData.herdNo}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="male">Male</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Breed</ion-label>
+      <ion-textarea [(ngModel)]="breed" name="breed" [ngModelOptions]="{standalone: true}"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>DOB</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"></ion-datetime>
+    </ion-item>
+
+    <button ion-button type="add" block (click)="updateData()">Update</button>
+  </form>
+
 </ion-content>

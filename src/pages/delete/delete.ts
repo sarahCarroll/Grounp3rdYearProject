@@ -29,13 +29,15 @@ export class DeletePage {
       _fn: 'getHerdNumbers'
     }
 
-
-  this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
+/*
+    Loops through the list until finds checked is true 
+*/
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
       this.myDataArray = (JSON.parse(data['_body']));
-      this.myDataArray.forEach(data=>{
-        data.checked=false;
+      this.myDataArray.forEach(data => {
+        data.checked = false;
       });
     },
       err => { console.log(err) });
@@ -45,7 +47,7 @@ export class DeletePage {
   /*
   Function for deleting animal from our database. 
   */
-  deleteData(herdNo:string){
+  deleteData(herdNo: string) {
 
     let alert = this.alertCtrl.create({
       title: 'View animal details',
@@ -53,14 +55,10 @@ export class DeletePage {
       buttons: [
         {
           text: 'OK',
-          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
         }]
     });
     alert.present();
-
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    let options = new RequestOptions({ headers: headers });
 
     var add = {
       _fn: 'deleteAnimal',
