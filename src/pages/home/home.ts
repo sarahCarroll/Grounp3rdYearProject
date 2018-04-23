@@ -15,6 +15,7 @@ export class HomePage {
   //public array to store the information from database
   public myDataArray: any[];
   public myCountArray: any[];
+  public myInfoArray: any[];
 
   add = {}
   logForm() {
@@ -23,12 +24,6 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
-  }
-
-  myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-    console.log("test");
   }
 
   ionViewWillEnter() {
@@ -47,8 +42,8 @@ export class HomePage {
 
       console.log(data['_body']);
       this.myDataArray = (JSON.parse(data['_body']));
-      this.myDataArray.forEach(data=>{
-        data.checked=false;
+      this.myDataArray.forEach(data => {
+        data.checked = false;
       });
     },
       err => { console.log(err) });
@@ -59,13 +54,11 @@ export class HomePage {
       this.myCountArray = Array.of(JSON.parse(data['_body']));
     },
 
-
-
       err => { console.log(err) });
     console.log("hello just called get");
   }
 
-  showData(herdNo:string){
+  showData(herdNo: string) {
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -79,15 +72,17 @@ export class HomePage {
     }
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
-      console.log(data['_body'])
+      console.log(data['_body'].breed);
+      console.log(data['_body']);
+      this.myInfoArray = Array.of(JSON.parse(data['_body']));
 
       let alert = this.alertCtrl.create({
         title: 'View animal',
-        subTitle: data['_body'],               
+        subTitle: (JSON.parse(data['_body'])),
         buttons: [
           {
             text: 'OK',
-            handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+            handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
           }]
       });
       alert.present();
@@ -96,9 +91,9 @@ export class HomePage {
     }, error => {
       console.log(error);// Error 
     });
-  
 
-   
+
+
 
   }
 }

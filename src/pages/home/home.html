@@ -1,38 +1,38 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title align="center">Farm Hand</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <!--UseName = herd number of logged in farmer-->
-  
+  <ion-navbar>
+    <ion-title align="center">Farm Hand</ion-title>
+  </ion-navbar>
+</ion-header>
 
-    <form (ngSubmit)="logForm()" >
-     
-      <br>
+<ion-content padding>
+  <!--UseName = herd number of logged in farmer-->
 
-      <ion-item *ngFor="let myData of myDataArray" >
-          <ion-label>{{myData.herdNo}} </ion-label> 
-          
-           <button   
-          ion-button
-          item-right
-          icon-only
-          outline
-          (click)="showData(myData.herdNo)"><ion-icon class="pull-right" name="list-box">
-              </ion-icon>
-          </button>
-           
-              
-     </ion-item>
+
+  <form (ngSubmit)="logForm()">
+
+    <br>
+
+    <ion-item *ngFor="let myData of myDataArray">
+      <ion-label>{{myData.herdNo}} </ion-label>
+
+      <button ion-button item-right icon-only outline (click)="showData(myData.herdNo)">
+        <ion-icon class="pull-right" name="list-box">
+        </ion-icon>
+      </button>
+
+
+
+    </ion-item>
 
   </form>
-    
 
-    <ion-item *ngFor="let myCount of myCountArray">
-        <h2>Number of animals recorded = {{myCount}}
-        </h2>
-      </ion-item>
-  
-  </ion-content>
+  <ion-item *ngFor="let myCount of myCountArray">
+    <h2>Number of animals recorded = {{myCount}}
+    </h2>
+  </ion-item>
+
+  <ion-item *ngFor="let myInfo of myInfoArray">
+    <ion-label>{{myInfo.breed}} </ion-label>
+  </ion-item>
+
+</ion-content>
