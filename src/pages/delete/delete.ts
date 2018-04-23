@@ -29,9 +29,13 @@ export class DeletePage {
       _fn: 'getHerdNumbers'
     }
 
+<<<<<<< HEAD
 /*
     Loops through the list until finds checked is true 
 */
+=======
+
+>>>>>>> sarahs
     this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
@@ -59,6 +63,13 @@ export class DeletePage {
         }]
     });
     alert.present();
+<<<<<<< HEAD
+=======
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
+>>>>>>> sarahs
 
     var add = {
       _fn: 'deleteAnimal',

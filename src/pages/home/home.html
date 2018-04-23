@@ -8,31 +8,27 @@
   <!--UseName = herd number of logged in farmer-->
 
 
-  <form >
-   
+  <form>
+
     <br>
 
-    <ion-item *ngFor="let myData of myDataArray" >
-        <ion-label>{{myData.herdNo}} </ion-label> 
-        
-         <button   
-        ion-button
-        item-right
-        icon-only
-        outline
-        (click)="showData(myData.herdNo)"><ion-icon class="pull-right" name="list-box">
-            </ion-icon>
-        </button>
-         
-            
-   </ion-item>
+    <ion-item *ngFor="let myData of myDataArray">
+      <ion-label>{{myData.herdNo}} </ion-label>
 
-</form>
-  
+      <button ion-button item-right icon-only outline (click)="showData(myData.herdNo)">
+        <ion-icon class="pull-right" name="list-box">
+        </ion-icon>
+      </button>
+
+
+    </ion-item>
+
+  </form>
+
 
   <ion-item *ngFor="let myCount of myCountArray">
-      <h2>Number of animals recorded = {{myCount}}
-      </h2>
-    </ion-item>
+    <h2>Number of animals recorded = {{myCount}}
+    </h2>
+  </ion-item>
 
 </ion-content>
