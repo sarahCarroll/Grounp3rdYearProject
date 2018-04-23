@@ -47,7 +47,7 @@ export class LoginPage {
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
       console.log(data['_body'])
-      this.navCtrl.setRoot(TabsPage, { sid: this.herdNo, name: this.Name, password: this.password })
+      //this.navCtrl.setRoot(TabsPage, { sid: this.herdNo, name: this.Name, password: this.password })
       console.log(data.toString)
     }, error => {
       console.log("Cannot login");// Error 
