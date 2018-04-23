@@ -1,15 +1,28 @@
 <ion-header>
-  <ion-navbar>
+    <ion-navbar>
       <ion-title align="center">Farm Hand - Delete</ion-title>
-
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-list-header></ion-list-header>
-    <ion-item>
-     
-    </ion-item>
-  </ion-list>
-</ion-content>
+  
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <form (ngSubmit)="logForm()">
+      Select an Animal to delete:
+      <br>
+  
+      <ion-item *ngFor="let myData of myDataArray">
+        <ion-label>{{myData.herdNo}} </ion-label>
+  
+        <button ion-button item-right icon-only outline (click)="deleteData(myData.herdNo)">
+          <ion-icon class="pull-right" name="trash">
+          </ion-icon>
+        </button>
+        <!--   <h2>{{myData.herdNo}}
+                       <input type="checkbox" [(ngModel)]="number" [ngModelOptions]="{standalone: true}">
+                      </h2> -->
+  
+      </ion-item>
+  
+    </form>
+  </ion-content>

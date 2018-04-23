@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { NavController, NavParams, } from 'ionic-angular';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { AddPage } from '../add/add';
@@ -15,38 +16,86 @@ export class HomePage {
   public myDataArray: any[];
   public myCountArray: any[];
 
+  home = {}
 
-  constructor(public navCtrl: NavController, public http: Http) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
+  
   ionViewWillEnter() {
 
-
+// Parameters call getHerdNumbers from the PHP
     var parameters = {
       _fn: 'getHerdNumbers'
     }
 
-    var changes = {
+    // noAnimals call getHerdNumbers from the PHP
+    var noAnimals = {
       _fn: 'getNumberOfAnimals'
     }
 
+/*
+  post method connecting with php on server using the IP address 
+  Looking for functions getHerdNumbers and getNumberOfAnimals in php
+  .subscribe is the function that actually executes the observable. It takes the callback parameters as follow
+   observables provide support for passing messages between publishers and subscribers in your application.
+*/
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
 
-    this.http.post('http://35.205.81.28/api/', parameters).subscribe((data) => {
-
-      console.log(JSON.parse(data['_body']));
+      console.log(data['_body']);
       this.myDataArray = (JSON.parse(data['_body']));
+      this.myDataArray.forEach(data=>{
+        data.checked=false;
+      });
     },
       err => { console.log(err) });
 
-    this.http.post('http://35.205.81.28/api/', changes).subscribe((data) => {
+   //.subscribe is the function that actually executes the observable. It takes the callback noAnimals as follow
+    this.http.post('http://104.199.57.94/api/', noAnimals).subscribe((data) => {
 
       console.log(JSON.parse(data['_body']));
-      //this.myCountArray = ((data['_body']));
+      this.myCountArray = Array.of(JSON.parse(data['_body']));
     },
 
 
 
       err => { console.log(err) });
     console.log("hello just called get");
+  }
+
+  showData(herdNo:string){
+
+    // getHerdInfo function in PHP to get the herd information
+    var home = {
+      _fn: 'getHerdInfo',
+      herdNo: herdNo
+    }
+
+
+    this.http.post('http://104.199.57.94/api/', home).subscribe((data) => {
+      console.log(data['_body'])
+
+      //Create alert which prints out the body of the getHerdInfo function
+      let alert = this.alertCtrl.create({
+        title: 'View animal',
+        subTitle: data['_body'],               
+        buttons: [
+          {
+            text: 'OK',
+            //Used to refresh page 
+            handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component)}
+          }]
+      });
+      alert.present();
+
+
+    }, error => {
+      console.log(error);// Error 
+    });
+  
+
+   
+
   }
 }

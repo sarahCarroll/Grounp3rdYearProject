@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { HomePage } from "../home/home";
+import { AlertController } from 'ionic-angular';
+
+
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the UpdatePage page.
@@ -14,8 +21,78 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UpdatePage {
 
-  constructor(public navCtrl: NavController) {
+  add = {}
+  logForm() {
 
   }
 
+  public myDataArray: any[];
+
+  gender: string;
+  breed: string;
+  dob: Date;
+
+  public herdNo: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
+  }
+
+  ionViewWillEnter() {
+
+
+    var parameters = {
+      _fn: 'getHerdNumbers'
+    }
+
+
+
+    this.http.post('http://104.199.57.94/api/', parameters).subscribe((data) => {
+
+      console.log(JSON.parse(data['_body']));
+      this.myDataArray = (JSON.parse(data['_body']));
+
+    },
+      err => { console.log(err) });
+
+  }
+  /*herdNoSelected(herdNo:string) {
+    this.herdNo=herdNo;
+  }*/
+
+  updateData() {
+
+    let alert = this.alertCtrl.create({
+      title: 'Update',
+      subTitle: 'Your animal ' + this.herdNo + ' has been updated',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { this.navCtrl.setRoot(this.navCtrl.getActive().component) }
+        }]
+    });
+    alert.present();
+
+    //Debug
+    let postParams = '&herdNo=' + this.herdNo + '&gender=' + this.gender + '&breed=' + this.breed + '&dob=' + this.dob;
+
+    console.log(postParams);
+
+    //herdNo, gender. dob, breed declared to be sent through to PHP
+    var update = {
+      _fn: 'updateAnimal',
+      herdNo: this.herdNo,
+      gender: this.gender,
+      dob: this.dob,
+      breed: this.breed
+
+    }
+
+
+    console.log(JSON.stringify(postParams));
+
+    this.http.post('http://104.199.57.94/api/', update).subscribe((data) => {
+      console.log(data['_body'])
+    }, error => {
+      console.log(error);// Error 
+    });
+  }
 }
