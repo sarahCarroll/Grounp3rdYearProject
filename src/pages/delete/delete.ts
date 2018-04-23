@@ -30,9 +30,9 @@ export class DeletePage {
     }
 
 <<<<<<< HEAD
-/*
-    Loops through the list until finds checked is true 
-*/
+    /*
+        Loops through the list until finds checked is true 
+    */
 =======
 
 >>>>>>> sarahs
