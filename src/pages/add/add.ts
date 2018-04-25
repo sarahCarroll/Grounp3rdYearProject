@@ -16,8 +16,10 @@ import 'rxjs/add/operator/map';
 export class AddPage {
   add = {}
   logForm() {
-
+    this.farmNo = this.navParams.data.sid;
+    console.log(this.navParams.data);
   }
+  farmNo: string;
 
 
   number: string;
@@ -28,7 +30,6 @@ export class AddPage {
   }
 
   insertData() {
-
     let alert = this.alertCtrl.create({
       title: 'Added',
       subTitle: 'Your animal ' + this.number + ' has been added!',

@@ -17,14 +17,21 @@ export class HomePage {
   public myCountArray: any[];
   public myInfoArray: any[];
 
+  farmNo: string;
+
   home = {}
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
+
+
   }
 
 
   ionViewWillEnter() {
+
+    this.farmNo = this.navParams.data.sid;
+    console.log(this.navParams.data);
 
     // Parameters call getHerdNumbers from the PHP
     var parameters = {
@@ -73,12 +80,13 @@ export class HomePage {
 
 
     this.http.post('http://104.199.57.94/api/', home).subscribe((data) => {
-      console.log(data['_body'])
+
+      let animal: any = JSON.parse(data['_body'])[0];
 
       //Create alert which prints out the body of the getHerdInfo function
       let alert = this.alertCtrl.create({
         title: 'View animal',
-        subTitle: data['_body'],
+        message: "Animal Number" + animal.herdNo + "<br/>Gender:" + animal.gender + "<br/>dob:" + animal.dob + "<br/>breed:" + animal.breed,
         buttons: [
           {
             text: 'OK',
