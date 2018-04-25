@@ -21,18 +21,15 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="Herd Number" name="herdNo" [(ngModel)]="number" required></ion-input>
+              <ion-input type="text" placeholder="farmNo" name="farmNo" [(ngModel)]="farmNo" required></ion-input>
             </ion-item>
 
           </ion-list>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col class="signup-col">
-          <button (click)="login()">Login</button>
-        </ion-col>
-      </ion-row>
+      <button ion-button type="Add" block (click)="login()">Login</button>
+
 
     </form>
   </div>

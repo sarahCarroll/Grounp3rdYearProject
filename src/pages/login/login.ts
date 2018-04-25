@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { TabsPage } from '../tabs/tabs';
-
+import { HomePage } from '../home/home';
 
 
 @Component({
@@ -15,43 +15,37 @@ import { TabsPage } from '../tabs/tabs';
 export class LoginPage {
   tabsPage = TabsPage;
 
-  Name: string;
+  name: string;
   password: string;
-  herdNo: string;
+  farmNo: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private alertCtrl: AlertController) {
   }
 
-  async login() {
+  login() {
 
-    //this.ref.orderByChild("email").equalTo
-    var i = 0;
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
 
     var add = {
       _fn: 'login',
-      name: this.Name,
+      name: this.name,
       password: this.password,
-      farmNo: this.herdNo,
+      farmNo: this.farmNo
     }
 
-    /* try {
-       this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
-         console.log(data['_body'])
-         this.navCtrl.setRoot(TabsPage, { sid: this.herdNo, name: this.Name, password: this.password })
-         console.log(data.toString)
-       }, error => {
-         console.log(error);// Error 
-       });
-     }
-   */
+    console.log(add);
 
     this.http.post('http://104.199.57.94/api/', add).subscribe((data) => {
       console.log(data['_body'])
-      //this.navCtrl.setRoot(TabsPage, { sid: this.herdNo, name: this.Name, password: this.password })
-      console.log(data.toString)
+      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.push(HomePage, {
+        sid: this.farmNo
+      });
+      console.log(this.farmNo)
     }, error => {
-      console.log("Cannot login");// Error 
+      console.log(error);// Error 
     });
-
   }
 }
