@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
-
-import { AddPage } from '../add/add';
 
 
 @Component({

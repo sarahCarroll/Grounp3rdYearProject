@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { HomePage } from "../home/home";
+import { NavController, NavParams } from 'ionic-angular';
+
 
 import { AlertController } from 'ionic-angular';
 
 
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
