@@ -4,7 +4,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { TabsPage } from '../tabs/tabs';
-import { HomePage } from '../home/home';
+
 
 @Component({
   selector: 'page-login',

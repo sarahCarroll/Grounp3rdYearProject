@@ -79,13 +79,12 @@ export class HomePage {
 
     this.http.post('http://104.199.57.94/api/', home).subscribe((data) => {
 
-      let animal: any = JSON.parse(data['_body']);
-      console.log(data['_body']);
+      let animal: any = JSON.parse(data['_body'])[0];
 
       //Create alert which prints out the body of the getHerdInfo function
       let alert = this.alertCtrl.create({
         title: 'View animal',
-        subTitle: animal.herdNo + "<br/>gender:" + animal.gender,
+        message: "Animal Number" + animal.herdNo + "<br/>Gender:" + animal.gender + "<br/>dob:" + animal.dob + "<br/>breed:" + animal.breed,
         buttons: [
           {
             text: 'OK',
