@@ -3,7 +3,6 @@ import { NavController, NavParams, } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 
-import { HomePage } from "../home/home";
 
 @Component({
   selector: 'page-delete',
